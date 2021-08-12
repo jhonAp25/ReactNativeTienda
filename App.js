@@ -1,6 +1,6 @@
 import React from 'react'; 
-import { Text, View , StyleSheet, TouchableOpacity} from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import {NativeBaseProvider, extendTheme} from 'native-base';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,16 +8,25 @@ import Inicio from './views/Inicio';
 import Gastos from './views/Gastos';
 import Perfil from './views/Perfil';
 import TabCustom from './components/Tab'
-import { Icon } from 'react-native-elements'
+
 
 import Venta from './views/Venta';
 import DetalleVenta from './views/DetalleVenta';
 import VentaFinal from './views/VentaFinal';
 
 const Stack = createStackNavigator();
-
-
 const Tab = createBottomTabNavigator();
+
+const newColorTheme = {
+  brand: {
+    900: '#8287af',
+    800: '#7c83db',
+    700: '#b3bef6',
+  },
+};
+const theme = extendTheme({ colors: newColorTheme });
+
+
 
 const ScreenInicio=()=>{
  
@@ -41,21 +50,19 @@ export default function App() {
 
   return (
     <>
-   <SafeAreaProvider>
 
- 
-
-    <NavigationContainer>
-      
-   
-    <Tab.Navigator tabBar={(props) => <TabCustom {...props} />}>
-        <Tab.Screen name="Ventas" component={Inicio} options={{header: ()=> null}}  />
-        <Tab.Screen name="Gastos" component={Gastos} options={{header: ()=> null}}   />
-        <Tab.Screen name="Gastdos" component={Gastos}options={{header: ()=> null}}   />
-        <Tab.Screen name="Perfil" component={Perfil} options={{header: ()=> null}}   />
-      </Tab.Navigator>
-    </NavigationContainer>
+  <NativeBaseProvider  theme={theme}>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Tab.Navigator tabBar={(props) => <TabCustom {...props} />}>
+            <Tab.Screen name="Ventas"  component={Venta}  />
+            <Tab.Screen name="Gastos"  component={Gastos} options={{header: ()=> null}}   />
+            <Tab.Screen name="venta" component={Venta} options={{header: ()=> null}}   />
+            <Tab.Screen name="Perfil"  component={Perfil} options={{header: ()=> null}}   />
+          </Tab.Navigator>
+        </NavigationContainer>
     </SafeAreaProvider>
+  </NativeBaseProvider>
     </>
   );
 }

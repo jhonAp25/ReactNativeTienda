@@ -18,7 +18,7 @@ export default Venta
 
 const style = StyleSheet.create({
     content:{
-        backgroundColor: '#10212D',
+        backgroundColor: '#081620',
        
         padding: 10
     }
