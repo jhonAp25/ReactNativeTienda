@@ -70,9 +70,22 @@ const style = StyleSheet.create({
                 alignItems : 'center' ,
                 backgroundColor : '#F2F3F4'},
   
-    title : {fontSize :40 , color :'#283747'},
-    imageD : {height: '200px' , width : '200px' ,  borderRadius : 100},
-    button : { backgroundColor : '#012B2A', padding : 5 , borderRadius : 5 , marginTop : 15 , paddingLeft: 20 , paddingRight : 20 , paddingTop : 10 , paddingBottom : 10},
+    title : {fontSize :40 ,
+            color :'#283747',
+            fontFamily : 'Roboto_300Light',
+          },
+    imageD : {height: '200px' ,
+              width : '200px' ,  
+              borderRadius : 100
+            },
+    button : { backgroundColor : '#012B2A', 
+              padding : 5 , 
+              borderRadius : 5 , 
+              marginTop : 15 , 
+              paddingLeft: 20 , 
+              paddingRight : 20 , 
+              paddingTop : 10 , 
+              paddingBottom : 10},
     buttonText : {color : '#ffffff' }
   
   })

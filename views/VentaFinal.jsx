@@ -2,12 +2,13 @@ import React from 'react'
 import { Text } from 'react-native'
 import { View } from 'react-native'
 
-const VentaFinal = () => {
+const VentaFinal = (props) => {
     return (
         <View>
-            <Text>HOLAA X2</Text>
+            <Text>{props}</Text>
         </View>
     )
 }
 
 export default VentaFinal
+    

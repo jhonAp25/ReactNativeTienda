@@ -11,26 +11,26 @@ const ListadoVentas = ({navigation}) => {
             
 
            
-            <ScrollView style={style.content} >
-                <Text style={{color: '#879096' , fontSize: '1.2rem' }}>Listado de Ventas </Text>
+            <ScrollView style={style.content}  >
+                <Text style={{color: '#879096' , fontSize: '1.2rem', fontFamily : 'Roboto_400Regular' }}>Listado de Ventas </Text>
                 <TouchableOpacity style={style.item} onPress={()=>navigation.push('detalleVenta')} >
                     <Text style={{fontSize: '1.1rem', flex: 1, color: '#fff',}} >1</Text>
-                    <Text style={{fontSize: '1.09rem',color: '#fff' , flex: 2}}>Nueva Venta</Text>
-                    <Text style={{fontSize: '1.1rem',color: '#F3F2C9' , fontWeight: '400' , flex: 3, textAlign :'right'}}>S/. 45</Text>
+                    <Text style={{fontSize: '1.09rem',color: '#fff' , flex: 2,fontFamily : 'Roboto_100Thin'}}>Nueva Venta</Text>
+                    <Text style={{fontSize: '1.1rem',color: '#F3F2C9' , fontWeight: '400' , flex: 3, textAlign :'right', fontFamily : 'Roboto_700Bold'}}>S/. 45</Text>
                 </TouchableOpacity>
 
 
                 <TouchableOpacity style={style.item} >
                     <Text style={{fontSize: '1.1rem', flex: 1,color: '#fff',}} >2</Text>
-                    <Text style={{fontSize: '1.1rem',color: '#fff' , flex: 2}}>Nueva Venta</Text>
-                    <Text style={{fontSize: '1.1rem',color: '#F3F2C9' , fontWeight: '400' , flex: 3, textAlign :'right'}}>S/. 45</Text>
+                    <Text style={{fontSize: '1.1rem',color: '#fff' , flex: 2,fontFamily : 'Roboto_100Thin'}}>Nueva Venta</Text>
+                    <Text style={{fontSize: '1.1rem',color: '#F3F2C9' , flex: 3, textAlign :'right', fontFamily : 'Roboto_700Bold'}}>S/. 45</Text>
                 </TouchableOpacity>
 
             
                 <TouchableOpacity style={style.item} >
                     <Text style={{fontSize: '1.1rem', flex: 1,color: '#fff',}} >2</Text>
-                    <Text style={{fontSize: '1.1rem',color: '#fff' , flex: 2}}>Nueva Venta</Text>
-                    <Text style={{fontSize: '1.1rem',color: '#F3F2C9' , fontWeight: '400' , flex: 3, textAlign :'right'}}>S/. 45</Text>
+                    <Text style={{fontSize: '1.1rem',color: '#fff' , flex: 2, fontFamily : 'Roboto_100Thin',}}>Nueva Venta</Text>
+                    <Text style={{fontSize: '1.1rem',color: '#F3F2C9' ,  flex: 3, textAlign :'right', fontFamily : 'Roboto_700Bold',}}>S/. 45</Text>
                 </TouchableOpacity>
             
             </ScrollView>
@@ -50,13 +50,12 @@ const style = StyleSheet.create({
         flex: 1,
         margin: 'auto',
         marginTop: '5%',
-
-        width : '95%',
+        width : '100%',
         
     },
   
     item:{
-        marginBottom: 10,
+        marginTop: 10,
         display: 'flex',
         color: '#fff',
         flexDirection: 'row',

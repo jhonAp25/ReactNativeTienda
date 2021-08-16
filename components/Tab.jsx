@@ -1,6 +1,8 @@
+import { Circle, Link } from 'native-base';
 import React from 'react'; 
 import { Text, View , StyleSheet, TouchableOpacity} from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon } from 'native-base'
+import { Ionicons, FontAwesome , MaterialIcons, AntDesign } from '@expo/vector-icons';
 
 
 export default function TabCustom({ state, descriptors, navigation }) {
@@ -8,6 +10,11 @@ export default function TabCustom({ state, descriptors, navigation }) {
       <View style={style.menuTabContainer}>
         {/************** MAP de los Stacks ***********************/}
         {state.routes.map((route, index) => {
+
+          
+          
+
+          
           const { options } = descriptors[route.key];
           const label =
             options.tabBarLabel !== undefined
@@ -35,6 +42,24 @@ export default function TabCustom({ state, descriptors, navigation }) {
               target: route.key,
             });
           };
+          if(label==='Venta'){
+            return(
+              <Link
+              bottom='80%'
+              accessibilityRole="button"
+                accessibilityState={isFocused ? { selected: true } : {}}
+                accessibilityLabel={options.tabBarAccessibilityLabel}
+                testID={options.tabBarTestID}
+                onPress ={onPress}
+                onLongPress={onLongPress}>
+                <Circle 
+                 bg='#FF4C29'  width='70px' height='70px' borderWidth='6px' borderRadius='35px' borderColor='#10212D'>
+                  <Icon name='add' as={Ionicons} color='#fff' />
+                </Circle>
+              </Link>
+            )
+            
+          }
   
           return (
             <TouchableOpacity
@@ -46,18 +71,18 @@ export default function TabCustom({ state, descriptors, navigation }) {
               onLongPress={onLongPress}
               style={style.tab}
             > 
-            <View style={style.tabSelected }>
-              <Icon name={label==='Ventas'
-                        ? 'snowflake'
+            <View style={ isFocused? style.tabSelected : '' }>
+              <Icon name={label==='Inicio'
+                        ? isFocused ? 'archive'   :  'archive-outline'
                         :label==='Gastos' 
-                        ? 'dollar-sign' 
+                        ? isFocused ? 'cash'   :  'cash-outline'
                         :label==='Perfil' 
-                        ?'user' : 'home' }
+                        ? isFocused ? 'person' : 'person-outline' : 'd'}
               
-              color={isFocused  ?'#F3F2C9' : '#CBCBCB'} type='font-awesome-5' style={{padding: 4}}  /> 
+              color={isFocused  ?'#F3F2C9' : '#CBCBCB'} as={Ionicons} style={{padding: 0}}   size={7} /> 
               {isFocused 
-              ? <Text style={{ color: isFocused ? '#F3F2C9' : '#CBCBCB'  }}>
-                    { label}
+              ? <Text style={{ color: isFocused ? '#F3F2C9' : '#CBCBCB'  ,marginLeft: 10 ,  fontFamily : 'Roboto_300Light'}}>
+                    {label}
                 </Text> 
               : null}
             </View>
@@ -72,34 +97,23 @@ export default function TabCustom({ state, descriptors, navigation }) {
   
   
   const style = StyleSheet.create({
-    shadow :{
-      backgroundColor: '#FF4C29',
-        
-    
-      elevation:5,
-      width: 70 , 
-      height: 70,
-      borderRadius: 35,
-      justifyContent: 'center',
-      alignItems: 'center',
-      top: -30,
-      borderColor: '#F2F2F2',
-      borderWidth: 5,
-  
-    },
+
     menuTabContainer:{  
       height: 80,
       flexDirection: 'row',
       justifyContent: 'space-around',
       backgroundColor: '#050F16',
       padding: 8,
+      fontFamily : 'Roboto_300Light',
       
      
     },
     tab:{
-     
+     fontFamily : 'Roboto_300Light',
       justifyContent : 'center',
       alignItems: 'center',
+     
+      
       width: 'min-content',
       
      
@@ -112,6 +126,17 @@ export default function TabCustom({ state, descriptors, navigation }) {
       backgroundColor: '#081620',
       padding: 7,
       borderRadius: 10,
+      paddingLeft: 12,
+      paddingRight: 12 ,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.10,
+      shadowRadius: 3.65, 
+      elevation: 3,
+      
      
       
       

@@ -7,10 +7,10 @@ import casaca from '../assets/Img/casaca.png'
 import conjunto from '../assets/Img/conjuto.png'
 import polo from '../assets/Img/polodepor.png'
 import { TouchableOpacity } from 'react-native'
-import { Box, Center , Flex, Text} from 'native-base'
+import { Box, Center , Flex, Link, ScrollView, Text} from 'native-base'
 
 
-const TipoProducto = ({navigation}) => {
+const TipoProducto = ({ navigation}) => {
 
 
     const [data, setData]= useState([
@@ -22,19 +22,24 @@ const TipoProducto = ({navigation}) => {
       ])
 
 
-    const renderItem = ({ item }) => (
-       <Flex direction='column' alignItems='center' justifyContent='space-around' bg="#10202D" style={style.item}  >
-            <Image style={style.image} source = { {uri : item.img}}  />
-            <Text fontWeight='semibold' color='#F3F2C9' textTransform='capitalize' > {item.name} </Text>
-        </Flex>
+    const renderItem = ({ item  }) => (
+        <Link onPress={()=> navigation.push('ventaFinal' , 'hola') }>
+            <Flex direction='column' alignItems='center' justifyContent='space-around' bg="#10202D" style={style.item}  >
+                <Image style={style.image} source = { {uri : item.img}}  />
+                <Text fontFamily='roboto_400Regular' color='#F3F2C9' textTransform='capitalize' fontSize='sm' > {item.name} </Text>
+            </Flex>
+        </Link>
     );
 
    
     return (
-        <View style={style.content} >
-            <Text  style={{fontWeight: 'bold' , fontSize : 20 , marginLeft : 14}}>Short </Text>
+        <ScrollView showsHorizontalScrollIndicator={false}
+                    maxHeight='80%' 
+                    style={style.content}  >
+
+            <Text color='#838A8F' textTransform='uppercase' style={{fontWeight: 'bold' , fontSize : 15 ,marginTop: 20}}>Short </Text>
             <FlatList
-                style={{flex : 1}}
+                style={{flex : 1, maxHeight: 195}}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={data}
@@ -42,25 +47,35 @@ const TipoProducto = ({navigation}) => {
                 keyExtractor={item => item.id}
             />
             
-            <Text  style={{fontWeight: 'bold' , fontSize : 20 , marginLeft : 14}}>Short </Text>
+            <Text  color='#838A8F'textTransform='uppercase' style={{fontWeight: 'bold' , fontSize : 15,marginTop: 20 }}>Buzo </Text>
             <FlatList
-                style={{flex : 1}}
+                style={{flex : 1, maxHeight: 195}}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
-            <Text  style={{fontWeight: 'bold' , fontSize : 20 , marginLeft : 14}}>Short </Text>
+            <Text color='#838A8F' textTransform='uppercase' style={{fontWeight: 'bold' , fontSize : 15 ,marginTop: 20}}>Casaca </Text>
             <FlatList
-                style={{flex : 1}}
+                style={{flex : 1, maxHeight: 195}}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
-        </View>
+
+            <Text color='#838A8F' textTransform='uppercase' style={{fontWeight: 'bold' , fontSize : 15 ,marginTop: 20}}>Casaca </Text>
+            <FlatList
+                style={{flex : 1, maxHeight: 195}}
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={item => item.id}
+            />
+        </ScrollView>
     )
 }
 
@@ -68,23 +83,20 @@ export default TipoProducto
 
 const style = StyleSheet.create({
     content : {
-        display : 'flex',
-        justifyContent: 'center',
-        height: '100vh',
         marginLeft: 30
-
+        
     },
     image:{
-        width: 110,
-        height: 110
+        width: 100,
+        height: 100
     },
     item:{
-        width: 180,
-        height: 180,
-        flex:1,
+        width: 150,
+        height: 150,
+      
         position: 'relative',
         marginHorizontal: 6,
-        marginTop: 15,
+        marginTop: 10,
         borderRadius: 10,
         shadowColor: "#000",
         shadowOffset: {
@@ -94,7 +106,7 @@ const style = StyleSheet.create({
         shadowOpacity: 0.43,
         shadowRadius: 9.51,
 
-        elevation: 15,
+      
 
         },
     nombre:{
@@ -104,7 +116,7 @@ const style = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
         color: '#fff',
-        border: '4px solid #fff ',
+       
         textTransform: 'uppercase'
         }
         
