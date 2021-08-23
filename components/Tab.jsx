@@ -1,20 +1,17 @@
-import { Circle, Link } from 'native-base';
+import { Circle, Link ,View ,Text,Icon } from 'native-base';
 import React from 'react'; 
-import { Text, View , StyleSheet, TouchableOpacity} from 'react-native';
-import { Icon } from 'native-base'
-import { Ionicons, FontAwesome , MaterialIcons, AntDesign } from '@expo/vector-icons';
+import {  StyleSheet, TouchableOpacity} from 'react-native';
 
+import { Ionicons, FontAwesome , MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { AiOutlineTag, AiFillDollarCircle, AiTwotoneTag, AiOutlineDollar, AiOutlineHeart,AiFillHeart } from "react-icons/ai";
+import {HiOutlinePlus} from "react-icons/hi";
 
 export default function TabCustom({ state, descriptors, navigation }) {
     return (
       <View style={style.menuTabContainer}>
         {/************** MAP de los Stacks ***********************/}
         {state.routes.map((route, index) => {
-
-          
-          
-
-          
+ 
           const { options } = descriptors[route.key];
           const label =
             options.tabBarLabel !== undefined
@@ -45,6 +42,7 @@ export default function TabCustom({ state, descriptors, navigation }) {
           if(label==='Venta'){
             return(
               <Link
+              key={index}
               bottom='80%'
               accessibilityRole="button"
                 accessibilityState={isFocused ? { selected: true } : {}}
@@ -54,7 +52,7 @@ export default function TabCustom({ state, descriptors, navigation }) {
                 onLongPress={onLongPress}>
                 <Circle 
                  bg='#FF4C29'  width='70px' height='70px' borderWidth='6px' borderRadius='35px' borderColor='#10212D'>
-                  <Icon name='add' as={Ionicons} color='#fff' />
+                  <HiOutlinePlus color='#fff' size='1.8em' />
                 </Circle>
               </Link>
             )
@@ -63,6 +61,7 @@ export default function TabCustom({ state, descriptors, navigation }) {
   
           return (
             <TouchableOpacity
+              key={index}
               accessibilityRole="button"
               accessibilityState={isFocused ? { selected: true } : {}}
               accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -72,14 +71,16 @@ export default function TabCustom({ state, descriptors, navigation }) {
               style={style.tab}
             > 
             <View style={ isFocused? style.tabSelected : '' }>
-              <Icon name={label==='Inicio'
-                        ? isFocused ? 'archive'   :  'archive-outline'
+
+            {label==='Inicio'
+                        ? isFocused ? <AiTwotoneTag color='#fff' size='1.8em' />   :   <AiOutlineTag color='#fff'  size='1.5em' />
                         :label==='Gastos' 
-                        ? isFocused ? 'cash'   :  'cash-outline'
+                        ? isFocused ? <AiFillDollarCircle color='#fff'  size='1.8em' />  :  <AiOutlineDollar  color='#fff'  size='1.5em' />
                         :label==='Perfil' 
-                        ? isFocused ? 'person' : 'person-outline' : 'd'}
+                        ? isFocused ? <AiFillHeart  color='#fff'  size='1.8em'/> : <AiOutlineHeart color='#fff' size='1.5em' /> : 'd'}
+
+
               
-              color={isFocused  ?'#F3F2C9' : '#CBCBCB'} as={Ionicons} style={{padding: 0}}   size={7} /> 
               {isFocused 
               ? <Text style={{ color: isFocused ? '#F3F2C9' : '#CBCBCB'  ,marginLeft: 10 ,  fontFamily : 'Roboto_300Light'}}>
                     {label}
@@ -98,7 +99,10 @@ export default function TabCustom({ state, descriptors, navigation }) {
   
   const style = StyleSheet.create({
 
-    menuTabContainer:{  
+    menuTabContainer:{ 
+      elevation: 1, 
+      position:'relative',
+      
       height: 80,
       flexDirection: 'row',
       justifyContent: 'space-around',

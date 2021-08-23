@@ -49,9 +49,8 @@ const ScreenVenta=()=>{
  
   return(  
     <Stack.Navigator>
-      <Stack.Screen name='venta' component={Venta}  options={{header: () => null}}  />
-      <Stack.Screen name='ventaFinal' component={VentaFinal}  />
-
+      <Stack.Screen name='Venta' component={Venta}  options={{header: () => null}}  />
+     
       <Stack.Screen name='detalleVenta' component={DetalleVenta} />
     </Stack.Navigator>
   )
@@ -74,15 +73,11 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator tabBarOptions={style.container} tabBar={props => <TabCustom {...props} />} >
             <Tab.Screen name="Inicio"  component={ScreenInicio} options={{header: ()=> null}}  />
-            <Tab.Screen name="Gastos"  component={Gastos} options={{header: ()=> <Header name='Gastos' /> }}    />
+            <Tab.Screen name="Gastos"  component={Gastos} options={{header: ()=> null}}    />
             <Tab.Screen name="Perfil"  component={Perfil} options={{header: ()=> <Header name='Perfil' />  }}   />
-            <Tab.Screen name="Venta" component={ScreenVenta} options={{tabBarShowLabel: false,
-                                                                header: ()=> <Header name='Nueva Venta'/>,
-                                                                tabBarIcon: ({focused})=>(
-                                                                  <Circle bg='#FF4C29' borderRadius='50%' position='absolute' bottom='50%' width='50px' height='50px' >
-                                                                    <Icon name='add' type='material' color='#fff' />
-                                                                    
-                                                                  </Circle>) }}   />
+            <Tab.Screen name="Venta" component={ScreenVenta} options={{
+                                                                header: ()=> <Header name='Nueva Venta'/>
+                                                                }}   />
             
           </Tab.Navigator>
         </NavigationContainer>
@@ -94,7 +89,8 @@ export default function App() {
 
 const style = StyleSheet.create({
   container:{
-      position: 'relative'
+      position: 'relative',
+      zIndex: 999999
   }
 }) 
 

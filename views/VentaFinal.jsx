@@ -5,7 +5,7 @@ import { View } from 'react-native'
 const VentaFinal = (props) => {
     return (
         <View>
-            <Text>{props}</Text>
+            <Text>do</Text>
         </View>
     )
 }

@@ -1,24 +1,82 @@
-import React from 'react'
-import {
-    NativeBaseProvider,
-    Box,
-    HStack,
-    VStack,
-    Text,
-    Pressable,
-    Image,
-    View,
-  } from 'native-base';
+import React,{useState} from 'react'
+import { View , Text, Button } from 'native-base';
+import ResumenGasto from '../components/ResumenGasto';
+import {  Image ,StyleSheet} from 'react-native';
+import CardProfile from '../components/CardProfile';
+import ListadoGastos from '../components/ListadoGastos';
+import { SafeAreaView } from 'react-native';
 
 
 const Gastos = () => {
+
+  const [total, setTotal]=useState(0)
+
     return (
-       <View bg='#10212D' height='100vh'>
+
+      <SafeAreaView style={{ backgroundColor: '#081620' }}>
+      <CardProfile  />
+        <View style={style.content}>
+        <Text style={{ fontSize : 20 , color: '#fff' , fontFamily: 'Roboto_700Bold', marginLeft: '4%' , marginTop:13}}> Gastos</Text>
+  
+        
+          <View style={style.resumen} >
+              <ResumenGasto  total={total}/>
+          </View>
+
+
+          <View style={{flex: 1  ,width: '90%' , margin: 'auto' }} >
+          <Text style={{color: '#879096' , fontSize: '1.2rem', fontFamily : 'Roboto_400Regular' , marginTop:15}}>Listado de Gastos </Text>
+
+              <ListadoGastos setTotal={setTotal} />
       
+          </View>
+
+          <View style={{flex: 1  ,width: '90%' , margin: 'auto' ,marginTop: '12px'}} >
+             <Button variant="outline" borderColor="#FF4C29" _text={{ color: "#FF4C29", }}> 
+               Nuevo Gasto
+             </Button>
       
-    
-      </View>
+          </View>
+  
+        </View>
+
+
+      </SafeAreaView>
     )   
 }
 
 export default Gastos
+
+
+const style = StyleSheet.create({
+  resumen:{
+    flexDirection: 'row',
+    margin : 'auto',    
+    padding: '5%',
+    backgroundColor: '#641A1E',
+    marginTop: '4%',
+    borderRadius : 10,
+    width : '90%'
+    }, 
+
+    content:{
+      borderTopRightRadius: 50,
+      borderTopLeftRadius: 50,
+      padding: 14,
+      backgroundColor: '#10212D',
+      fontFamily: 'Roboto_400Regular',
+      height: '100vh'
+    },
+
+
+
+    title :{
+      fontFamily: 'Roboto_400Regular',
+      marginTop: '3%',
+      display: 'flex',
+      flexDirection : 'row',
+      justifyContent : 'space-between'
+    },
+
+
+})
