@@ -1,16 +1,26 @@
-import React,{useState} from 'react'
-import { View , Text, Button } from 'native-base';
+import React,{useContext, useEffect, useState} from 'react'
+import { View , Text, Button, Modal } from 'native-base';
 import ResumenGasto from '../components/ResumenGasto';
 import {  Image ,StyleSheet} from 'react-native';
 import CardProfile from '../components/CardProfile';
 import ListadoGastos from '../components/ListadoGastos';
 import { SafeAreaView } from 'react-native';
+import { GastoContext } from '../context/GastoContext';
+import NuevoGasto from '../components/NuevoGasto';
 
 
 const Gastos = () => {
 
-  const [total, setTotal]=useState(0)
+  let {total, gasto , setTotal, getGastosHoy, postNewGasto} = useContext(GastoContext)
 
+  const [modalVisible, setModalVisible] = useState(false)
+
+
+  useEffect(() => {
+    getGastosHoy()
+  }, [])
+
+ 
     return (
 
       <SafeAreaView style={{ backgroundColor: '#081620' }}>
@@ -20,21 +30,23 @@ const Gastos = () => {
   
         
           <View style={style.resumen} >
-              <ResumenGasto  total={total}/>
+              <ResumenGasto  total={total} />
           </View>
 
 
           <View style={{flex: 1  ,width: '90%' , margin: 'auto' }} >
           <Text style={{color: '#879096' , fontSize: '1.2rem', fontFamily : 'Roboto_400Regular' , marginTop:15}}>Listado de Gastos </Text>
 
-              <ListadoGastos setTotal={setTotal} />
+              <ListadoGastos setTotal={setTotal} gasto={gasto}  getGastosHoy={getGastosHoy}  />
       
           </View>
 
           <View style={{flex: 1  ,width: '90%' , margin: 'auto' ,marginTop: '12px'}} >
-             <Button variant="outline" borderColor="#FF4C29" _text={{ color: "#FF4C29", }}> 
+             <Button variant="outline" borderColor="#FF4C29" _text={{ color: "#FF4C29", }} onPress={() => setModalVisible(!modalVisible)} > 
                Nuevo Gasto
              </Button>
+
+             <NuevoGasto  modalVisible={modalVisible} setModalVisible={setModalVisible} postNewGasto={postNewGasto} />
       
           </View>
   

@@ -30,29 +30,16 @@ const TipoProducto = ({ navigation}) => {
 
 
 
- 
-    const getModelo =()=>{
-            return   axios.get(`http://192.168.100.20:8080/tipoProducto/listaModelo/3`).then(({data})=> {setModelo(data) })
-         }  
 
     useEffect(() => {
 
-        axios.get('http://192.168.100.20:8080/tipoProducto/lista').then(({data})=> { setTipoProd(data) })
+        axios.get('https://tienda-apaza-back-end.herokuapp.com/tipoProducto/lista').then(({data})=> { setTipoProd(data) })
        
     
-            console.log( getModelo())
-     
-        
     }, []);
 
 
-    const [data, setData]= useState([
-        { nombre : 'jhon' , imagenProducto : short ,  id : '1'},
-        { nombre : 'jose' , imagenProducto : buzo ,   id : '2'},
-        { nombre : 'Carlos',imagenProducto : casaca , id : '3'},
-        { nombre : 'Alex',  imagenProducto : conjunto,id : '4'},
-        { nombre : 'Jasson',imagenProducto : polo ,   id : '5'}
-      ])
+  
 
 
     const renderItem = ({ item }) => (

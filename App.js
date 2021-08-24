@@ -18,6 +18,8 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { StyleSheet } from 'react-native';
 import { useFonts } from '@expo-google-fonts/roboto';
 import { Roboto_400Regular , Roboto_700Bold, Roboto_100Thin, Roboto_300Light }  from '@expo-google-fonts/roboto';
+import {GastoProvider} from './context/GastoContext'
+
 
 
 const Stack = createStackNavigator();
@@ -66,7 +68,7 @@ export default function App() {
             </NativeBaseProvider>
   }else{
   return (
-    <>
+    <GastoProvider>
 
   <NativeBaseProvider  theme={theme}>
     <SafeAreaProvider>
@@ -83,7 +85,7 @@ export default function App() {
         </NavigationContainer>
     </SafeAreaProvider>
   </NativeBaseProvider>
-    </>
+    </GastoProvider>
   );}
 }
 

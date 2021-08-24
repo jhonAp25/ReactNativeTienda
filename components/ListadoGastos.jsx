@@ -6,30 +6,16 @@ import { TouchableOpacity } from 'react-native';
 import axios from 'axios';
 
 
-const ListadoGastos = ({ setTotal}) => {
-    const [gastos,setGastos]=useState([])
+const ListadoGastos = ({ setTotal, gasto, getGastosHoy}) => {
     
 
-    const getGastos=()=>{
-        axios.get('http://192.168.100.20:8080/gastos/listaAlDia').then(({data})=> {
-            setTotal(data.reduce((prev, next) => prev + next.costo, 0))
-            setGastos(data)
-         })
 
-    }
-
-    useEffect(() => {
-        getGastos()
-        console.log(gastos.length )
-
-    }, [])
-
-
+   
     return (
         <>
             <ScrollView style={style.content}  >
 
-                {gastos.map(g=>(
+                {gasto.map(g=>(
                     <TouchableOpacity style={style.item}  >
                     <Text style={{fontSize: '1.1rem', flex: 1, color: '#fff',}} >{g.id}</Text>
                     <Text style={{fontSize: '1.09rem',color: '#fff' , flex: 2,fontFamily : 'Roboto_100Thin'}}>{g.nombre}</Text>
