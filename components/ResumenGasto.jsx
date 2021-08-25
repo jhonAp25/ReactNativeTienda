@@ -2,13 +2,13 @@ import { Box } from 'native-base';
 import React from 'react'
 import { Text, View, Image ,StyleSheet} from 'react-native'
 
-const ResumenGasto = ({total}) => {
+const ResumenGasto = ({total , gasto}) => {
     return (
         <>
             <View style={{width: '80%'}}>
                 <Box flexDirection='row'  alignItems='baseline'  >
                     <Text style={{color :'#9BB9BA', marginBottom: 10,fontFamily: 'Roboto_400Regular'}} >Total de Gastos </Text>
-                    <View style={style.badge1}>18</View>
+                    <View style={style.badge1}>{gasto.length}</View>
                 </Box> 
                 <Text style={{fontWeight: 'bold' , fontSize : 25 , marginRight : 14 , color :'#fff' }}> S/{total}</Text>
             </View>
@@ -38,7 +38,7 @@ const style = StyleSheet.create({
         width : '90%'
     },
     badge1:{
-        fontSize: 10,
+        fontSize: 15,
         color:'#9B9FA2',
         width:  28,
         height: 28,

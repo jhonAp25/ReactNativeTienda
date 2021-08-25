@@ -9,7 +9,7 @@ const NuevoGasto = ({modalVisible,setModalVisible, postNewGasto }) => {
 
     const {values, isSubmitting , setFieldValue, handleSubmit} = useFormik({
         initialValues:{
-            costo: 0,
+            costo: '',
             nombre : '',
         },
         onSubmit: values=>{
@@ -19,9 +19,7 @@ const NuevoGasto = ({modalVisible,setModalVisible, postNewGasto }) => {
         }
     })
 
-    const changeGasto=(e)=>{
-        
-    }
+    
 
 
     return (
@@ -41,7 +39,7 @@ const NuevoGasto = ({modalVisible,setModalVisible, postNewGasto }) => {
                       
                         borderColor='#2A363E'
                         placeholder="Escriba su producto..." // mx={4}
-                        color='#2A363E'  
+                        color='#fff'  
                     />
                 </Box>
 
@@ -57,7 +55,7 @@ const NuevoGasto = ({modalVisible,setModalVisible, postNewGasto }) => {
                         borderColor='#2A363E'
                         _focus="#081620"
                         placeholder="Escriba su Costo..." // mx={4}
-                        color='#2A363E'
+                        color='#fff'
                     
                     />
                 </Box>

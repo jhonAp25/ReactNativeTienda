@@ -1,15 +1,20 @@
 import React from 'react'
 import { View ,Text , StyleSheet} from 'react-native'
 import TipoProducto from '../components/TipoProducto'
+import { ProductoProvider } from '../context/ProductoContext'
 
 
 
 const Venta = ({navigation}) => {
     return (
+        <ProductoProvider>
+
+      
         <View style={style.content}>
             
             <TipoProducto navigation={navigation}  hola='hola' />
         </View>
+        </ProductoProvider>
     )
 }
 

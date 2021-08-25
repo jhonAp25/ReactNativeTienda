@@ -1,4 +1,4 @@
-import React,{useContext , useState} from 'react'
+import React,{useContext , useEffect, useState} from 'react'
 
 import axios from 'axios';
 
@@ -12,6 +12,7 @@ const GastoProvider = ({children}) => {
     
     //********* */ STATES ************
     const [ gasto , setGastos] = useState([])
+    const [ isSubmit , setIsSubmit] = useState(true)
     const [total , setTotal]=useState(0)
 
   
@@ -22,11 +23,8 @@ const GastoProvider = ({children}) => {
                 setTotal(data.reduce((prev, next) => prev + next.costo, 0))
                 setGastos(data)
                console.log(data)
-               
                 })
-            .catch((error) => { 
-              
-              
+            .catch((error) => {  
             })}
 
     const postNewGasto =(data)=>axios.post(url +'gastos',{
@@ -36,7 +34,7 @@ const GastoProvider = ({children}) => {
            } )
             .then(({data})=>{ 
              
-               console.log(data)
+                setIsSubmit(!isSubmit)
                
             })
             .catch((error) => { 
@@ -46,7 +44,10 @@ const GastoProvider = ({children}) => {
         
    // const nuevoUsu = async()=>{ await axios.post(url +'/nuevo').then((response)=>{ setUsuario(response.data); }) }
 
-
+useEffect(() => {
+   getGastosHoy()
+  
+}, [isSubmit])
 
 
     return(

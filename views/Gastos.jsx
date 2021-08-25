@@ -30,7 +30,7 @@ const Gastos = () => {
   
         
           <View style={style.resumen} >
-              <ResumenGasto  total={total} />
+              <ResumenGasto  total={total} gasto={gasto} />
           </View>
 
 

@@ -1,4 +1,4 @@
-import React ,{useEffect, useState} from 'react'
+import React ,{useEffect, useState,useContext} from 'react'
 
 import { StyleSheet , FlatList} from 'react-native'
 import short from '../assets/Img/short.png'
@@ -10,40 +10,39 @@ import { TouchableOpacity } from 'react-native'
 import {Image ,View, Flex, Link, ScrollView, Text, Button} from 'native-base'
 import axios from 'axios'
 import DetalleProducto from './DetalleProducto'
+import { ProductoContext } from '../context/ProductoContext'
 
 
-const TipoProducto = ({ navigation}) => {
+const TipoProducto = () => {
 
-    const [tipoProd ,setTipoProd] =useState([])
+    let {tipoProd,  getListaPorModelo, modeloProd , producto} = useContext(ProductoContext)
+
+
+    
     const [modelo, setModelo] = useState([])
 
     const [modalVisible, setModalVisible] = useState(false)
-    const [prodSelect, setpProdSelect] = useState([])
+   // const [prodSelect, setProdSelect] = useState([])
     
     
   
-    const handleSizeClick = (producto ) => {
+    const handleSizeClick = (id) => {
         
       setModalVisible(!modalVisible)
-      setpProdSelect(producto )
+     // setProdSelect(producto )
+      getListaPorModelo(id)
+      
     }
 
 
 
-
-    useEffect(() => {
-
-        axios.get('https://tienda-apaza-back-end.herokuapp.com/tipoProducto/lista').then(({data})=> { setTipoProd(data) })
-       
-    
-    }, []);
 
 
   
 
 
     const renderItem = ({ item }) => (
-        <Link onPress={() => handleSizeClick(item)} >
+        <Link onPress={() => handleSizeClick(item.id)} >
             <Flex direction='column' alignItems='center' justifyContent='space-around' bg="#10202D" style={style.item}  >
                 <Image style={style.image} source = {{uri : item.imagenProducto}}   />
                 <Text fontFamily='roboto_400Regular' color='#F3F2C9' textTransform='capitalize' fontSize='sm' > {item.nombre} </Text>
@@ -82,7 +81,7 @@ const TipoProducto = ({ navigation}) => {
 
         {/********************** M O D A L ******************************** */}
         
-        <DetalleProducto prodSelect={prodSelect} modalVisible={modalVisible} setModalVisible={setModalVisible}  />
+        <DetalleProducto modelo={modeloProd} modalVisible={modalVisible} setModalVisible={setModalVisible}  />   
 
         </>
     )
