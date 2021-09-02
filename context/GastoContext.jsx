@@ -29,18 +29,12 @@ const GastoProvider = ({children}) => {
 
     const postNewGasto =(data)=>axios.post(url +'gastos',{
             costo : data.costo,
-            nombre: data.nombre,
-            
+            nombre: data.nombre,   
            } )
             .then(({data})=>{ 
-             
-                setIsSubmit(!isSubmit)
-               
+                setIsSubmit(!isSubmit)   
             })
-            .catch((error) => { 
-              
-              
-            })
+            .catch((error) => { })
         
    // const nuevoUsu = async()=>{ await axios.post(url +'/nuevo').then((response)=>{ setUsuario(response.data); }) }
 

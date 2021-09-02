@@ -7,7 +7,7 @@ import casaca from '../assets/Img/casaca.png'
 import conjunto from '../assets/Img/conjuto.png'
 import polo from '../assets/Img/polodepor.png'
 import { TouchableOpacity } from 'react-native'
-import {Image ,View, Flex, Link, ScrollView, Text, Button} from 'native-base'
+import {Image ,View, Flex, Link, ScrollView, Text, Button, Pressable} from 'native-base'
 import axios from 'axios'
 import DetalleProducto from './DetalleProducto'
 import { ProductoContext } from '../context/ProductoContext'
@@ -15,22 +15,19 @@ import { ProductoContext } from '../context/ProductoContext'
 
 const TipoProducto = () => {
 
-    let {tipoProd,  getListaPorModelo, modeloProd , producto} = useContext(ProductoContext)
+    let {tipoProd,  getListaPorModelo, modeloProd } = useContext(ProductoContext)
 
 
-    
-    const [modelo, setModelo] = useState([])
+    /**************** S T A T E *************** */
 
     const [modalVisible, setModalVisible] = useState(false)
-   // const [prodSelect, setProdSelect] = useState([])
     
-    
+
+ 
   
-    const handleSizeClick = (id) => {
-        
-      setModalVisible(!modalVisible)
-     // setProdSelect(producto )
-      getListaPorModelo(id)
+    const handleSizeClick = (id) => {       
+        setModalVisible(!modalVisible)
+        getListaPorModelo(id)
       
     }
 
@@ -42,12 +39,12 @@ const TipoProducto = () => {
 
 
     const renderItem = ({ item }) => (
-        <Link onPress={() => handleSizeClick(item.id)} >
+        <Pressable onPress={() => handleSizeClick(item.id)} >
             <Flex direction='column' alignItems='center' justifyContent='space-around' bg="#10202D" style={style.item}  >
-                <Image style={style.image} source = {{uri : item.imagenProducto}}   />
+                <Image style={style.image} source = {{uri : item.imagenProducto}} alt='ropa-modelo'   />
                 <Text fontFamily='roboto_400Regular' color='#F3F2C9' textTransform='capitalize' fontSize='sm' > {item.nombre} </Text>
             </Flex>
-        </Link>
+        </Pressable>
     );
 
    
@@ -81,7 +78,7 @@ const TipoProducto = () => {
 
         {/********************** M O D A L ******************************** */}
         
-        <DetalleProducto modelo={modeloProd} modalVisible={modalVisible} setModalVisible={setModalVisible}  />   
+        <DetalleProducto modelo={modeloProd} modalVisible={modalVisible} setModalVisible={setModalVisible} />   
 
         </>
     )
@@ -132,7 +129,5 @@ const style = StyleSheet.create({
             color : '#879096',
           
         },
-    
-        
 
 })

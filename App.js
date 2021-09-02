@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useContext } from 'react'; 
 import {NativeBaseProvider, extendTheme, View, Circle, Text} from 'native-base';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,6 +19,7 @@ import { StyleSheet } from 'react-native';
 import { useFonts } from '@expo-google-fonts/roboto';
 import { Roboto_400Regular , Roboto_700Bold, Roboto_100Thin, Roboto_300Light }  from '@expo-google-fonts/roboto';
 import {GastoProvider} from './context/GastoContext'
+import { PedidoContext, PedidoProvider } from './context/PedidoContext';
 
 
 
@@ -60,15 +61,21 @@ const ScreenVenta=()=>{
 
 
 export default function App() {
+
+
+
+
+
  
   let [fontsLoaded] = useFonts({Roboto_400Regular , Roboto_700Bold, Roboto_100Thin , Roboto_300Light});
 
   if (!fontsLoaded) {
-      return <NativeBaseProvider  theme={theme}>
-            </NativeBaseProvider>
+      return <NativeBaseProvider  theme={theme}> </NativeBaseProvider>
   }else{
+
   return (
-    <GastoProvider>
+  <GastoProvider>
+  <PedidoProvider>
 
   <NativeBaseProvider  theme={theme}>
     <SafeAreaProvider>
@@ -78,14 +85,15 @@ export default function App() {
             <Tab.Screen name="Gastos"  component={Gastos} options={{header: ()=> null}}    />
             <Tab.Screen name="Perfil"  component={Perfil} options={{header: ()=> <Header name='Perfil' />  }}   />
             <Tab.Screen name="Venta" component={ScreenVenta} options={{
-                                                                header: ()=> <Header name='Nueva Venta'/>
+                                                                header: ()=> <Header name='Nueva Venta'    />
                                                                 }}   />
             
           </Tab.Navigator>
         </NavigationContainer>
     </SafeAreaProvider>
   </NativeBaseProvider>
-    </GastoProvider>
+  </PedidoProvider>
+  </GastoProvider>
   );}
 }
 
